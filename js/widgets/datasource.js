@@ -256,7 +256,41 @@ var datasource_h5 = {
 					{ "type": "status_code", "desc": "SIP Status Code", options: [ {"value": "ALL"}  ] },
                 ]
             }
-        }
+        },
+		{
+            "name": "Component",
+            "type": "JSON",
+            "settings": {
+                "path": "statistic\/component",
+                "query": "{\n   \"timestamp\": {\n          \"from\": \"@from_ts\",\n          \"to\":  \"@to_ts\"\n   },\n  \"param\": {\n        \"filter\": [ \n             \"@filters\"\n       ],\n       \"limit\": \"@limit\",\n       \"total\": \"@total\"\n   }\n}",
+                "method": "GET",
+                "limit": 200,
+                "total": false,
+                "eval": {
+                    incoming: {
+                        name: "test incoming",
+                        value: "var object = @incoming; return object"
+                    }
+                },
+                "timefields" : [
+                    { "field": "from_ts", "desc": "From Timestamp" },
+                    { "field": "to_ts", "desc": "To Timestamp" }
+                ],
+                "fieldvalues": [
+                    { "field": "total", "desc": "Total" }
+                ],
+                "filters": [
+                    {
+                        "type": "ip_address",
+                        "desc": "Info type",
+                        options: [
+                            { "value": "You must modify datasource.js"  },
+                            { "value": "You must modify datasource.js"  },
+                        ]
+                    }
+                ]
+            }
+        },
 
     ]
 };
